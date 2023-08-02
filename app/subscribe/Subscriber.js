@@ -21,8 +21,8 @@ const Subscriber = sequelize.define("Subscriber", {
   },
 });
 
-Subscriber.belongsTo(User, { foreignKey: "targetUserId" });
-Subscriber.belongsTo(User, { foreignKey: "subUserId" });
+Subscriber.belongsTo(User, { foreignKey: "targetUserId", as: "targetUsers" });
+Subscriber.belongsTo(User, { foreignKey: "subUserId", as: "subUsers" });
 User.hasMany(Subscriber, { foreignKey: "targetUserId", as: "targetUsers" });
 User.hasMany(Subscriber, { foreignKey: "subUserId", as: "subUsers" });
 

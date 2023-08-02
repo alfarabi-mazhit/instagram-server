@@ -6,6 +6,7 @@ const {
   subscribeByUsername,
   subscribesToUsername,
   subscribesByUsername,
+  suggest,
 } = require("./controllers");
 
 router.post(
@@ -27,6 +28,11 @@ router.get(
   "/api/subscribe/by/byUsername/:username",
   passport.authenticate("jwt", { session: false }),
   subscribesByUsername
+);
+router.get(
+  "/api/subscribe/suggest",
+  passport.authenticate("jwt", { session: false }),
+  suggest
 );
 
 module.exports = router;

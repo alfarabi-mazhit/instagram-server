@@ -65,18 +65,37 @@ const subscribesByUsername = async (req, res) => {
   });
   res.status(200).send(subscribers);
 };
-// const suggest = async (req, res) => {
-//   const users = await Subscriber.findAll({
-//     where: {
-//       subUserId: req.user.id,
-//     },
-//   });
-//   const lastFiveUsers = {};
-//   users.forEach()
-// };
+
+const suggest = async (req, res) => {
+  const users = await Subscriber.findAll({
+    where: {
+      subUserId: req.user.id,
+    },
+  });
+  if (users.length === 0) {
+    return res.status(200).send([]);
+  }
+  const userIds = users.map((subscription) => subscription.targetUserId);
+  const allSubscriptions = await Subscriber.findAll({
+    where: {
+      subUserId: userIds,
+    },
+    order: [["createdAt", "DESC"]],
+  });
+  const lastFiveSubsIds = allSubscriptions
+    .slice(0, 5)
+    .map((subscription) => subscription.targetUserId);
+  const sugUsers = await User.findAll({
+    where: { id: lastFiveSubsIds },
+    attributes: ["id", "photoUrl", "username"],
+  });
+  res.status(200).send(sugUsers);
+};
+
 module.exports = {
   subscribeById,
   subscribeByUsername,
   subscribesToUsername,
   subscribesByUsername,
+  suggest,
 };
