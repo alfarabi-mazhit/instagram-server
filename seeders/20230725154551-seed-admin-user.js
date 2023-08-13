@@ -9,7 +9,7 @@ module.exports = {
     await User.bulkCreate([
       {
         username: "instagram",
-        email: null,
+        email: "instagram",
         password: bcrypt.hashSync(myPassword, 10),
         name: "Instagram",
         roleId: adminRole.id,
