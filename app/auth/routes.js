@@ -26,22 +26,13 @@ router.put(
 );
 router.get(
   "/api/user/byUsername/:username",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   findUserByUsername
 );
 router.get(
   "/api/user/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   findUserById
-);
-
-router.post(
-  "/api/test",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    console.log(req.user);
-    res.status(200).end();
-  }
 );
 
 module.exports = router;

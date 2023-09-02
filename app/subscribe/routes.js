@@ -21,12 +21,12 @@ router.post(
 );
 router.get(
   "/api/subscribe/to/byUsername/:username",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   subscribesToUsername
 );
 router.get(
   "/api/subscribe/by/byUsername/:username",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   subscribesByUsername
 );
 router.get(

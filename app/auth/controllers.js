@@ -19,13 +19,22 @@ const sendVerificationEmail = async (req, res) => {
     res.status(200).send({ message: "Код авторизации уже был отправлен." });
   } else {
     const code = "AE" + Date.now();
-    AuthCode.create({
+    const obj = AuthCode.create({
       email: req.body.email,
       code,
       valid_till: Date.now() + 120000,
     });
-    sendEmail(req.body.email, "Код авторизации в instagram: ", code);
-    res.status(200).send({ message: "ДОПОЛНИТЬ СТРАНИЦЕЙ ПРОВЕРКИ КОДА" });
+    const { error, message } = await sendEmail(
+      req.body.email,
+      "Код авторизации в instagram: ",
+      code
+    );
+    if (error?.length) {
+      obj.destroy();
+      res
+        .status(300)
+        .send({ error, message, page: "ДОПОЛНИТЬ СТРАНИЦЕЙ ПРОВЕРКИ КОДА" });
+    } else res.status(200).end();
   }
 };
 

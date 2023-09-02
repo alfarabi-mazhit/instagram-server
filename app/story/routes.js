@@ -24,7 +24,7 @@ router.get(
 );
 router.get(
   "/api/storiesByUser/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   getStoriesByUserId24h
 );
 router.delete(

@@ -16,23 +16,11 @@ router.post(
   createComment
 );
 
-// router.get(
-//   "/api/myComments",
-//   passport.authenticate("jwt", { session: false }),
-//   getMyComments
-// );
-
 router.get(
   "/api/comments/:postId",
   passport.authenticate("jwt", { session: false }),
   getCommentsByPostId
 );
-
-// router.get(
-//   "/api/comment/:id",
-//   passport.authenticate("jwt", { session: false }),
-//   getCommentById
-// );
 
 router.delete(
   "/api/comment/:id",

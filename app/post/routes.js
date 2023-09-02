@@ -32,12 +32,12 @@ router.get(
 );
 router.get(
   "/api/post/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   getPostById
 );
 router.get(
   "/api/posts/byUsername/:username",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   getPostsByUsername
 );
 router.delete(
