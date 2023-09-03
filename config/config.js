@@ -17,7 +17,7 @@ module.exports = {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     database: process.env.DB_DATABASE,
-    dialect: process.env.DBB_DIALECT,
+    dialect: process.env.DB_DIALECT,
     dialectOptions: {
       ssl: {
         ca: fs.readFileSync(path.resolve("config", process.env.DB_SSL_CA)),
