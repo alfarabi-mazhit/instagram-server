@@ -6,8 +6,8 @@ const createComment = async (req, res) => {
   const comment = await Comment.create({
     postId: req.body.postId,
     userId: req.user.id,
-    taggedUserId: req.body.taggedUserId ? req.body.taggedUserId : null,
-    refId: req.body.refId ? req.body.refId : null,
+    taggedUserId: req.body.taggedUserId || null,
+    refId: req.body.refId || null,
     text: req.body.text,
   });
   res.status(200).send(comment);

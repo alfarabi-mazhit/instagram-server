@@ -20,7 +20,7 @@ const subscribeById = async (req, res) => {
   }
 };
 
-const subscribeByUsername = async (req, res) => {
+const subscribe = async (req, res) => {
   const targetUser = await User.findOne({
     where: { username: req.params.username },
   });
@@ -44,7 +44,7 @@ const subscribeByUsername = async (req, res) => {
   }
 };
 
-const subscribesToUsername = async (req, res) => {
+const subscribesTo = async (req, res) => {
   const user = await User.findOne({ where: { username: req.params.username } });
   if (!user) {
     return res.status(404).send({ message: "user not found" });
@@ -55,7 +55,7 @@ const subscribesToUsername = async (req, res) => {
   res.status(200).send(subscribers);
 };
 
-const subscribesByUsername = async (req, res) => {
+const subscribesBy = async (req, res) => {
   const user = await User.findOne({ where: { username: req.params.username } });
   if (!user) {
     return res.status(404).send({ message: "user not found" });
@@ -94,8 +94,8 @@ const suggest = async (req, res) => {
 
 module.exports = {
   subscribeById,
-  subscribeByUsername,
-  subscribesToUsername,
-  subscribesByUsername,
+  subscribe,
+  subscribesTo,
+  subscribesBy,
   suggest,
 };
